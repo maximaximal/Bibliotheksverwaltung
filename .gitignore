@@ -1,0 +1,2 @@
+# Vendor is not ignored, because it would complicate the setup.
+# vendor/

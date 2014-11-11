@@ -1,0 +1,9 @@
+{
+    "require": {
+            "j4mie/idiorm": "1.5.1",
+            "filp/whoops": "1.*"
+    },
+    "autoload": {
+        "psr-4": {"App\\": "app/"}
+    }
+}
