@@ -50,8 +50,29 @@ and open the template in the editor.
                     <?php
                         
                     ?>
+
+                    
+                </div>
+                <div class="ym-grid">
+                    <div class="ym-g66 ym-gl">
+                        <div class="ym-gbox">
+                            <h2>Derzeitige Ausleihungen</h2>
+                        </div>
+                    </div>
+                    <div class="ym-g33 ym-gr">
+                        <div class="ym-gbox">
+                            <h2>Anmelden</h2>
+                            <form class="ym-form">
+                                <div class="ym-fbox">
+                                    <label for="user">User:</label>
+                                    <input type="text" name="user" id="your-id" placeholder="username" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
         </main>
     </body>
 </html>
