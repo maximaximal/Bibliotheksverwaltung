@@ -1,4 +1,4 @@
 vendor/
 bootstrap.php
 composer.lock
-
+app/cache

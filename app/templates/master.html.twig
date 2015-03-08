@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        {% block head %}
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %} - Bibliotheksverwaltung</title>
+        
+        <link href="css/imports.css" rel="stylesheet" type="text/css"/>
+
+        <!--[if lte IE 7]>
+        <link href="yaml/core/iehacks.css" rel="stylesheet" type="text/css" />
+        <![endif]-->
+
+        <!--[if lt IE 9]>
+        <script src="lib/html5shiv/html5shiv.js"></script>
+        <![endif]-->
+        {% endblock %}
+    </head>
+    <body>
+        <!-- Seitenmarkup Beispiel -->
+        <header>
+            <div class="ym-wrapper">
+                <div class="ym-wbox">
+                    <h1>Bibliotheksregister</h1>
+                </div>
+            </div>
+            <nav id="nav">
+                <div class="ym-wrapper">
+                    <div class="ym-hlist">
+                        <ul id="navigation">
+                            {% for item in navigation %}
+                                <li {% if item.page == current_page %} class="active" {% endif %}>
+                                    <a href="{{item.href}}">{{item.caption}}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="ym-wrapper">
+                {% block content %}
+                {% endblock %}
+            </div>
+            
+        </main>
+    </body>
+</html>
+{# empty Twig template #}

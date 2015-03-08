@@ -1,0 +1,46 @@
+{% extends "index.html.twig" %}
+
+{% block title %}Registrieren{% endblock%}
+
+{% block maincontent %}
+    {% if registerAllowed %}
+        <h2>Informationen zum Registrieren</h2>
+        <p>
+            Eine Registrierung ermöglicht die Adminsitration der Bibliothek.
+        </p>
+    {% else %}
+        <h2>Registrierung deaktiviert.</h2>
+        <p>
+            Die Registrierung wurde vom Seitenadministrator deaktiviert.
+        </p>
+    {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+    {% if registerAllowed %}
+        <h2>Registrieren</h2>
+        <form class="ym-form" action="register.php" method="post">
+            <div class="ym-fbox">
+                <label for="user">Benutzername:</label>
+                <input type="text" name="user" placeholder="user" />
+            </div>
+            <div class="ym-fbox">
+                <label for="name">Voller Name:</label>
+                <input type="text" name="name" placeholder="Susi Musterfrau" />
+            </div>
+            <div class="ym-fbox">
+                <label for="pass">Passwort:</label>
+                <input type="password" name="pass" placeholder="••••••••" />
+            </div>
+            <div class="ym-fbox">
+                <label for="pass2">Passwort wiederholen:</label>
+                <input type="password" name="pass2" placeholder="••••••••" />
+            </div>
+            <div class="ym-fbox">
+                <input type="submit" value="Registrieren" />
+            </div>
+        </form>
+    {% else %}
+        <i>Registrierung deaktiviert.</i>
+    {% endif %}
+{% endblock %}

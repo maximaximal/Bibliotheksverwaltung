@@ -1,0 +1,39 @@
+{% extends "index.html.twig" %}
+
+{% block title %}Anmelden{% endblock %}
+
+{% block maincontent %}
+    <h2>Ihre Anmeldedaten</h2>
+    <p>
+        Bitte fragen Sie Ihren Administrator um einen Zugang zur Bibliotheksverwaltung zu erhalten. 
+    </p>
+{% endblock %}
+
+{% block sidebar %}
+    {% if user %}
+        <h2>Sie sind bereits angemeldet!</h2>
+        <p>
+            Sie sind bereits als {{ user.getName() }} angemeldet!
+        </p>
+        <form class="ym-form" method="post" action="logout.php">
+            <div class="ym-fbox">
+                <input type="submit" class="ym-danger" value="Abmelden" />
+            </div>
+        </form>
+    {% else %}
+        <h2>Anmelden</h2>
+        <form class="ym-form" action="login.php" method="post">
+            <div class="ym-fbox">
+                <label for="user">Benutzername:</label>
+                <input type="text" name="user" placeholder="user" />
+            </div>
+            <div class="ym-fbox">
+                <label for="pass">Passwort:</label>
+                <input type="password" name="pass" placeholder="••••••••" />
+            </div>
+            <div class="ym-fbox">
+                <input type="submit" />
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

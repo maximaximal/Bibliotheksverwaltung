@@ -1,7 +1,9 @@
 {
     "require": {
             "j4mie/idiorm": "1.5.1",
-            "filp/whoops": "1.*"
+            "filp/whoops": "1.*",
+            "twig/twig": "1.18.0",
+            "ircmaxell/password-compat": "dev-master"
     },
     "autoload": {
         "psr-4": {"App\\": "app/"}

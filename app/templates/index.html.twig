@@ -1,0 +1,24 @@
+{% extends "master.html.twig" %}
+
+{% block title %}Start{% endblock %}
+{% block content %}
+    <div class="ym-grid">
+        <div class="ym-g66 ym-gl">
+            <div class="ym-gbox">
+            {% block maincontent %}
+                {% if user %}
+                    <p>Sie sind bereits angemeldet. Die für Sie zugelassenen Aktionen wurden oben freigeschaltet.</p>
+                {% else %}
+                    <p>Bitte <a href="index.php?page=login">melden Sie sich an</a> um die Bibliotheksverwaltung aufzurufen.</p>
+                {% endif %}
+            {% endblock %}
+            </div>
+        </div>
+        <div class="ym-g33 ym-gr">
+            <div class="ym-gbox">
+            {%block sidebar %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

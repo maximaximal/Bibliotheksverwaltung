@@ -1,0 +1,12 @@
+{% extends "master.html.twig" %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+    <h2>Status</h2>
+    <ul>
+        {% for msg in messages %}
+            <li>{{ msg.message }}{% if msg.link %} - <a href="{{msg.link}}">{{msg.caption}}</a>{% endif %}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
