@@ -2,6 +2,95 @@
 
 {% block title %}Bücher verwalten{% endblock %}
 
+{% block head %}
+    {{ parent() }}
+    <link href="css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+
+    <script src="js/select2.min.js"></script>
+    <script src="js/i18n/de.js"></script>
+    <script src="js/addlending.js"></script>
+    <script src="js/managebooks.js"></script>
+{% endblock %}
+
 {% block content %}
     <h2>Verwaltung des Bibliothekinventars</h2>
+    <h3>Buch hinzufügen</h3>
+    <p>
+        Um Bücher hinzuzufügen, tragen Sie die benötigten Daten bitte im folgenden Formular ein.
+    </p>
+    <form action="addBook.php" class="ym-form ym-columnar" method="post">
+        <div class="ym-fbox">
+            <label for="title">Titel:</label>
+            <input type="text" name="title" placeholder="Titel unbekannt" required="required" />
+        </div>
+        <div class="ym-fbox">
+            <label for="author">Autor:</label>
+            <input type="text" name="author" placeholder="Autor unbekannt" />
+        </div>
+        <div class="ym-fbox">
+            <label for="publisher">Verlag:</label>
+            <input type="text" name="publisher" placeholder="Verlag unbekannt" />
+        </div>
+        <div class="ym-fbox">
+            <label for="year">Erscheinungsjahr:</label>
+            <input type="number" name="year" placeholder="Erscheinungsjahr unbekannt" />
+        </div>
+        <div class="ym-fbox">
+            <label for="features">Beilagen (CDs, DVDs, ...):</label>
+            <input type="text" name="features" placeholder="Keine Beilagen" />
+        </div>
+        <div class="ym-fbox">
+            <label for="condition">Zustand:</label>
+            <input type="text" name="condition" placeholder="Keine Schäden" />
+        </div>
+        <div class="ym-fbox">
+            <label for="count">Anzahl:</label>
+            <input type="number" name="count" placeholder="1" />
+        </div>
+        <div class="ym-fbox">
+            <label>&nbsp</label>
+            <button type="submit" class="save ym-save ym-success" id="submit">Absenden</button>
+        </div>
+    </form>
+
+    <h3>Buch ändern</h3>
+    <form class="ym-form ym-columnar">
+        <div class="ym-fbox" action="changeBook.php" method="post">
+            <label for="book">Buch auswählen</label>
+            <select class="bookselector" name="book" id="book" multiple="multiple">
+            </select>
+            <div class="ym-fbox">
+                <label for="title">Titel:</label>
+                <input type="text" name="title" placeholder="" required="required" />
+            </div>
+            <div class="ym-fbox">
+                <label for="author">Autor:</label>
+                <input type="text" name="author" placeholder="" />
+            </div>
+            <div class="ym-fbox">
+                <label for="publisher">Verlag:</label>
+                <input type="text" name="publisher" placeholder="" />
+            </div>
+            <div class="ym-fbox">
+                <label for="year">Erscheinungsjahr:</label>
+                <input type="number" name="year" placeholder="" />
+            </div>
+            <div class="ym-fbox">
+                <label for="features">Beilagen (CDs, DVDs, ...):</label>
+                <input type="text" name="features" placeholder="" />
+            </div>
+            <div class="ym-fbox">
+                <label for="condition">Zustand:</label>
+                <input type="text" name="condition" placeholder="" />
+            </div>
+            <div class="ym-fbox">
+                <label>&nbsp</label>
+                <button type="submit" class="save ym-save ym-success" id="submit">Absenden</button>
+            </div>
+        </div>
+    </form>
 {% endblock %}

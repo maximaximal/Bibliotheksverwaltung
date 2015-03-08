@@ -19,11 +19,18 @@ class Navigation {
         ),
         array(
             "page" => "login",
-            "caption" => "Anmelden"
+            "caption" => "Anmelden",
+            "user" => false
+        ),
+        array(
+            "href" => "logout.php",
+            "caption" => "Abmelden",
+            "user" => true
         ),
         array(
             "page" => "register",
-            "caption" => "Registrieren"
+            "caption" => "Registrieren",
+            "user" => false
         ),
         array(
             "page" => "manageBooks",
@@ -37,10 +44,9 @@ class Navigation {
         ),
         array(
             "page" => "addLending",
-            "caption" => "Buch ausleihen",
+            "caption" => "Bücher ausleihen",
             "requiredPerms" => array("add_lending")
-        ),
-        
+        )
     );
     
     public function getTwigArray()
@@ -78,7 +84,23 @@ class Navigation {
             } else {
                 $add = true;
             }
-            
+
+            if(isset($item["user"])) {
+                if($_SESSION["user"]) {
+                    if($item["user"]) {
+                        $add = true;
+                    } else {
+                        $add = false;
+                    }
+                } else {
+                    if($item["user"]) {
+                        $add = false;
+                    } else {
+                        $add = true;
+                    }
+                }
+            }
+
             if($add) {
                 \array_push($twigArray, $entry);
             }
