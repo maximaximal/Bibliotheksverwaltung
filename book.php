@@ -2,25 +2,20 @@
 
 require './bootstrap.php';
 
-if(!isset($_GET["q"])) {
-    echo "No search term q set!";
+if(!isset($_GET["id"])) {
+    echo "No id set!";
     exit();
 }
 
-$q = $_GET["q"];
+$id = $_GET["id"];
 
-$books = ORM::for_table("books")
-    ->where_like("title", "%$q%")
-    ->find_many();
+$book = ORM::for_table("books")
+    ->where_id_is($id)
+    ->find_one();
 
-$results = array(
-    "items" => array(
-        
-    )
-);
+$item = array();
 
-foreach($books as $book) 
-{
+if($book) {
     $item = array(
         "title" => $book->title,
         "id" => $book->id,
@@ -30,8 +25,6 @@ foreach($books as $book)
         "year" => $book->year,
         "publisher" => $book->publisher
     );
-
-    \array_push($results["items"], $item);
 }
 
-echo \json_encode($results);
+echo \json_encode($item);
