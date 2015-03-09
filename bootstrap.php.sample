@@ -18,11 +18,22 @@ use App\Config;
 //Start the session.
 session_start();
 
+if(!isset($_SESSION['user'])) {
+    $_SESSION['user'] = false;
+}
+
 //Configure Twig
 $loader = new Twig_Loader_Filesystem(\dirname(__FILE__).'/app/templates');
 $twig = new Twig_Environment($loader, array(
-    'cache' => \dirname(__FILE__).'/app/cache/twig/'
+    //'cache' => \dirname(__FILE__).'/app/cache/twig/'
 ));
+
+Config::set("REGISTER_ALLOWED", true);
+
+$nav = new App\Navigation();
+$twig->addGlobal("navigation", $nav->getTwigArray());
+$twig->addGlobal("registerAllowed", Config::get("REGISTER_ALLOWED"));
+$twig->addGlobal("user", $_SESSION['user']);
 
 //Configure variables
 Config::set("DB_HOST", "localhost");
