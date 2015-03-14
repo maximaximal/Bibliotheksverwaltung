@@ -18,13 +18,32 @@
 {% block content %}
     <div class="ym-grid">
         <h2>Bücher ausleihen</h2>
+        {% if data == "success" %}
+            <div class="box success">
+                <p>
+                    Die Bücher wurden erfolgreich ausgeliehen.
+                </p>
+            </div>
+        {% endif %}
         <h3>Buch auswählen</h3>
-        <form class="ym-form ym-columnar">
+        <form class="ym-form ym-columnar" action="addLending.php" method="post">
             <div class="ym-fbox">
-                <label for="book">Buch auswählen</label>
-                <select class="bookselector" name="book" id="book">
-                    <option value="NotSet" selected="selected">Kein Buch ausgewählt</option>
+                <label for="book">Bücher auswählen</label>
+                <select class="bookselector_lending bookselector" name="book" id="book" multiple="multiple">
                 </select>
+                <div class="ym-fbox">
+                    <label for="lender">Ausleihen an:</label>
+                    <input type="text" name="lender" placeholder="Susi Musterfrau" />
+                </div>
+                <div class="ym-fbox">
+                    <label for="class">Klasse:</label>
+                    <input type="text" name="class" placeholder="1a"/>
+                </div>
+                <input type="hidden" name="ids" id="IDsToChange" />
+                <div class="ym-fbox">
+                    <label>&nbsp</label>
+                    <button type="submit" class="save ym-save ym-success" id="submit">Absenden</button>
+                </div>
             </div>
         </form>
     </div>

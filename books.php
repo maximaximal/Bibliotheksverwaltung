@@ -2,6 +2,8 @@
 
 require './bootstrap.php';
 
+header('Content-Type: application/json');
+
 if(!isset($_GET["q"])) {
     echo "No search term q set!";
     exit();
@@ -10,7 +12,7 @@ if(!isset($_GET["q"])) {
 $q = $_GET["q"];
 
 $books = ORM::for_table("books")
-    ->where_like("title", "%$q%")
+    ->where_raw("`title` LIKE ? OR `author` LIKE ? OR `year` LIKE ? OR `features` LIKE ? OR `publisher` LIKE ?", array("%$q%", "%$q%", "%$q%", "%$q%", "%$q%"))
     ->find_many();
 
 $results = array(

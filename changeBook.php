@@ -66,4 +66,4 @@ $ids = \json_decode($ids);
 
     $books->save();
 
-header("Location: index.php?page=manageBooks");
+header("Location: index.php?page=manageBooks&data=changed");

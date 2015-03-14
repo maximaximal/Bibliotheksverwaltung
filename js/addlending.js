@@ -44,3 +44,24 @@ if (book.loading) return book.title;
 function formatBookSelection (book) {
     return book.title + " (" + book.id + ")";
 }
+
+var IDs = new Array();
+
+function updateFields_lending() {
+    if(IDs.length > 0) {
+        $("#IDsToChange").val(JSON.stringify(IDs));
+    }
+}
+
+$(".bookselector_lending").on("select2:select", function (e) {
+    IDs.push(e.params.data.id);
+
+    updateFields_lending();
+});
+$(".bookselector_lending").on("select2:unselect", function (e) {
+    IDs = $.grep(IDs, function(value) {
+        return value != e.params.data.id;
+    });
+
+    updateFields_lending();
+});

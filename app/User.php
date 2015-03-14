@@ -81,6 +81,10 @@ class User {
     {
         return $this->name;
     }
+    public function getID()
+    {
+        return $this->id;
+    }
     public function hasPermission($perm) 
     {
         foreach($this->permissions as $permission)

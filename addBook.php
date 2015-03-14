@@ -66,4 +66,4 @@ for($i = 0; $i < $count; ++$i)
     $book->save();
 }
 
-header("Location: index.php?page=manageBooks");
+header("Location: index.php?page=manageBooks&data=added");

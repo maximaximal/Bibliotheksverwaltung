@@ -18,6 +18,20 @@
 
 {% block content %}
     <h2>Verwaltung des Bibliothekinventars</h2>
+    {% if data == "added" %}
+        <div class="box success">
+            <p>
+                Das Buch/Die Bücher wurden erfolgreich hinzugefügt. 
+            </p>
+        </div>
+    {% endif %}
+    {% if data == "changed" %}
+        <div class="box success">
+            <p>
+                Die Daten wurden erfolgreich geändert. 
+            </p>
+        </div>
+    {% endif %}
     <h3>Buch hinzufügen</h3>
     <p>
         Um Bücher hinzuzufügen, tragen Sie die benötigten Daten bitte im folgenden Formular ein.
