@@ -58,8 +58,8 @@
     </form>
 
     <h3>Buch ändern</h3>
-    <form class="ym-form ym-columnar">
-        <div class="ym-fbox" action="changeBook.php" method="post">
+    <form class="ym-form ym-columnar" action="changeBook.php" method="post">
+        <div class="ym-fbox">
             <label for="book">Buch auswählen</label>
             <select class="bookselector" name="book" id="book" multiple="multiple">
             </select>
@@ -87,6 +87,7 @@
                 <label for="condition">Zustand:</label>
                 <input id="editCondition" type="text" name="condition" placeholder="" />
             </div>
+            <input type="hidden" name="ids" id="IDsToChange" />
             <div class="ym-fbox">
                 <label>&nbsp</label>
                 <button type="submit" class="save ym-save ym-success" id="submit">Absenden</button>

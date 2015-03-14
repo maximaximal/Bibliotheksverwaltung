@@ -10,6 +10,8 @@ function updateFields() {
             $("#editPublisher").val(data.publisher);
             $("#editYear").val(data.year);
         });
+
+        $("#IDsToChange").val(JSON.stringify(IDs));
     }
 }
 

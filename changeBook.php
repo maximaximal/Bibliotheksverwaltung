@@ -53,16 +53,17 @@ if(!is_string($ids)) {
 
 $ids = \json_decode($ids);
 
-    $book = ORM::for_table("books")
-        ->where_(array(
-            "title" => $title,
-            "author" => $author,
-            "publisher" => $publisher,
-            "year" => $year,
-            "features" => $features,
-            "condition" => $condition,
-        ));
+    $books = ORM::for_table("books")
+        ->where_id_in($ids)
+        ->find_result_set();
 
-    $book->save();
+    $books->set('title', $title);
+    $books->set('author', $author);
+    $books->set('publisher', $publisher);
+    $books->set('year', $year);
+    $books->set('features', $features);
+    $books->set('condition', $condition);
+
+    $books->save();
 
 header("Location: index.php?page=manageBooks");
