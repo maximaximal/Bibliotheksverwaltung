@@ -1,0 +1,54 @@
+{% extends "master.html.twig" %}
+
+{% block head %}
+    {{ parent() }}
+    <link href="css/select2.min.css" rel="stylesheet" />
+    <link href="css/jquery-ui.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+
+    <script src="js/select2.min.js"></script>
+    <script src="js/i18n/de.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/datepicker-de.js"></script>
+    <script src="js/jquery.form-validator.min.js"></script>
+    <script src="js/endlending.js"></script>
+{% endblock %}
+
+{% block title %}Bücher zurückgeben{% endblock %}
+
+{% block content %}
+    <div class="ym-grid">
+        <h2>Bücher zurückgeben</h2>
+        {% if data == "success" %}
+            <div class="box success">
+                <p>
+                    Die Bücher wurden erfolgreich ausgeliehen.
+                </p>
+            </div>
+        {% endif %}
+        <h3>Ausleihung auswählen</h3>
+        <form class="ym-form ym-columnar" action="endLending.php?action=getLending" method="post">
+            <div class="ym-fbox">
+                <label for="book">Name des Ausleihers oder der Klasse (oder ID der Ausleihung)</label>
+                <select class="lendingselector" name="lending" id="lending">
+                </select>
+                <div class="ym-fbox">
+                    <label>&nbsp</label>
+                    <button type="submit" class="save ym-save ym-success" id="submit">Bücher anfordern</button>
+                </div>
+            </div>
+        </form>
+        
+        <div style="display: none;" id="bookCheck">
+            <h3>Bücher überprüfen</h3>
+            <p>
+                Bitte überprüfen Sie die zurückgegebenen Bücher auf Schäden oder Unvollständigkeit und
+                tragen Sie die gefundenen Mängel unten ein. 
+            </p>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,6 +1,6 @@
-$(".bookselector").select2({
+$(".lendingselector").select2({
     ajax: {
-        url: "books.php?free=1",
+        url: "lendings.php",
         dataType: 'json',
         data: function (params) {
             return {
@@ -20,27 +20,27 @@ $(".bookselector").select2({
     },
     escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
     minimumInputLength: 1,
-    templateResult: formatBook,
-    templateSelection: formatBookSelection,
+    templateResult: formatLending,
+    templateSelection: formatLendingSelection,
     language: "de"
 });
 
-function formatBook (book) {
-if (book.loading) return book.title;
+function formatLending (lending) {
+if (lending.loading) return lending.id;
 
     var markup = "<div class='ym-grid'>\n\
     <div class='ym-g50 ym-gl'><div class='ym-gbox'>\n\
-        <p>" + book.title + " (" + book.id + ")\n\
+        <p>Klasse: " + lending.class + " (ID: " + lending.id + ")\n\
     </div></div>\n\
     <div class='ym-g50 ym-gr'><div class='ym-gbox'>\n\
-        <p>" + book.author + "\n\
+        <p>Ausgeborgt von: " + lending.lender + ", am " + lending.created + "\n\
     </div></div></div>";
 
     return markup;
 }
 
-function formatBookSelection (book) {
-    return book.title + " (" + book.id + ")";
+function formatLendingSelection(lending) {
+    return lending.lender + " (ID: " + lending.id + ") - ausgeborgt am " + lending.created;
 }
 
 var germanLanguage = {

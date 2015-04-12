@@ -3,6 +3,7 @@
 {% block head %}
     {{ parent() }}
     <link href="css/select2.min.css" rel="stylesheet" />
+    <link href="css/jquery-ui.min.css" rel="stylesheet" />
 {% endblock %}
 
 {% block scripts %}
@@ -10,6 +11,9 @@
 
     <script src="js/select2.min.js"></script>
     <script src="js/i18n/de.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/datepicker-de.js"></script>
+    <script src="js/jquery.form-validator.min.js"></script>
     <script src="js/addlending.js"></script>
 {% endblock %}
 
@@ -33,11 +37,15 @@
                 </select>
                 <div class="ym-fbox">
                     <label for="lender">Ausleihen an:</label>
-                    <input type="text" name="lender" placeholder="Susi Musterfrau" />
+                    <input type="text" name="lender" data-validation="length" data-validation-length="min3" placeholder="Susi Musterfrau" />
                 </div>
                 <div class="ym-fbox">
                     <label for="class">Klasse:</label>
-                    <input type="text" name="class" placeholder="1a"/>
+                    <input type="text" name="class" data-validation="length" data-validation-length="min1" placeholder="1a"/>
+                </div>
+                <div class="ym-fbox">
+                    <label for="bringback">Voraussichtliches Rückgabedatum:</label>
+                    <input type="text" name="bringback" id="bringback-date" placeholder="-"/>
                 </div>
                 <input type="hidden" name="ids" id="IDsToChange" />
                 <div class="ym-fbox">

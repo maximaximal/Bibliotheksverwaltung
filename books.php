@@ -2,7 +2,7 @@
 
 require './bootstrap.php';
 
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 
 if(!isset($_GET["q"])) {
     echo "No search term q set!";
@@ -10,9 +10,20 @@ if(!isset($_GET["q"])) {
 }
 
 $q = $_GET["q"];
+$free = false;
+
+if(isset($_GET['free'])) {
+    $free = true;
+}
+
+$rawClause = "(`title` LIKE ? OR `author` LIKE ? OR `year` LIKE ? OR `features` LIKE ? OR `publisher` LIKE ?)";
+
+if($free) {
+    $rawClause .= " AND (`lending` = -1)";
+}
 
 $books = ORM::for_table("books")
-    ->where_raw("`title` LIKE ? OR `author` LIKE ? OR `year` LIKE ? OR `features` LIKE ? OR `publisher` LIKE ?", array("%$q%", "%$q%", "%$q%", "%$q%", "%$q%"))
+    ->where_raw($rawClause, array("%$q%", "%$q%", "%$q%", "%$q%", "%$q%"))
     ->find_many();
 
 $results = array(
