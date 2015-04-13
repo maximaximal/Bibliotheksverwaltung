@@ -75,15 +75,12 @@ var germanLanguage = {
     groupCheckedEnd : ' Werte'
 };
 
-
 $(function() {
     $("#bringback-date").datepicker();
     $.validate({
         language : germanLanguage
     });
 });
-
-    
 
 var IDs = new Array();
 

@@ -37,10 +37,13 @@ foreach($books as $book)
     $item = array(
         "title" => $book->title,
         "id" => $book->id,
+        "internalID" => $book->internalID,
         "author" => $book->author,
         "features" => $book->features,
         "condition" => $book->condition,
         "year" => $book->year,
+        "lang" => $book->lang,
+        "place" => $book->place,
         "publisher" => $book->publisher
     );
 

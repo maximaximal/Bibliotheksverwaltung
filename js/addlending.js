@@ -30,7 +30,7 @@ if (book.loading) return book.title;
 
     var markup = "<div class='ym-grid'>\n\
     <div class='ym-g50 ym-gl'><div class='ym-gbox'>\n\
-        <p>" + book.title + " (" + book.id + ")\n\
+        <p>" + book.title + " (" + book.internalID + ")\n\
     </div></div>\n\
     <div class='ym-g50 ym-gr'><div class='ym-gbox'>\n\
         <p>" + book.author + "\n\
@@ -40,7 +40,7 @@ if (book.loading) return book.title;
 }
 
 function formatBookSelection (book) {
-    return book.title + " (" + book.id + ")";
+    return book.title + " (" + book.internalID+ ")";
 }
 
 var germanLanguage = {

@@ -23,7 +23,10 @@ if($book) {
         "features" => $book->features,
         "condition" => $book->condition,
         "year" => $book->year,
-        "publisher" => $book->publisher
+        "publisher" => $book->publisher,
+        "internalID" => $book->internalID,
+        "place" => $book->place,
+        "lang" => $book->lang
     );
 }
 

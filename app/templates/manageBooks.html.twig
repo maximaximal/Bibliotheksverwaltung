@@ -12,6 +12,9 @@
 
     <script src="js/select2.min.js"></script>
     <script src="js/i18n/de.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/datepicker-de.js"></script>
+    <script src="js/jquery.form-validator.min.js"></script>
     <script src="js/managebooks.js"></script>
 {% endblock %}
 
@@ -45,12 +48,24 @@
             <input type="text" name="author" placeholder="Autor unbekannt" />
         </div>
         <div class="ym-fbox">
+            <label for="internalID">Interne ID (Stempel/Inschrift):</label>
+            <input type="text" name="internalID" placeholder="Keine Interne ID" />
+        </div>
+        <div class="ym-fbox">
             <label for="publisher">Verlag:</label>
             <input type="text" name="publisher" placeholder="Verlag unbekannt" />
         </div>
         <div class="ym-fbox">
             <label for="year">Erscheinungsjahr:</label>
             <input type="number" name="year" placeholder="Erscheinungsjahr unbekannt" />
+        </div>
+        <div class="ym-fbox">
+            <label for="place">Erscheinungsort:</label>
+            <input type="text" name="place" placeholder="Erscheinungsort unbekannt" />
+        </div>
+        <div class="ym-fbox">
+            <label for="lang">Sprache (2-Buchstaben Code):</label>
+            <input type="text" name="lang" data-validation="length" data-validation-length="max2" placeholder="Sprache unbekannt" />
         </div>
         <div class="ym-fbox">
             <label for="features">Beilagen (CDs, DVDs, ...):</label>
@@ -71,6 +86,7 @@
     </form>
 
     <h3>Buch ändern</h3>
+    <p>Um einzelne Werte unverändert zu lassen, entfernen Sie bitte den Text aus dem jeweiligen Eingabefeld.</p>
     <form class="ym-form ym-columnar" action="changeBook.php" method="post">
         <div class="ym-fbox">
             <label for="book">Buch auswählen</label>
@@ -85,12 +101,24 @@
                 <input id="editAuthor" type="text" name="author" placeholder="" />
             </div>
             <div class="ym-fbox">
+                <label for="internalID">Interne ID (Stempel/Inschrift):</label>
+                <input id="editInternalID" type="text" name="internalID" placeholder="" />
+            </div>
+            <div class="ym-fbox">
                 <label for="publisher">Verlag:</label>
                 <input id="editPublisher" type="text" name="publisher" placeholder="" />
             </div>
             <div class="ym-fbox">
                 <label for="year">Erscheinungsjahr:</label>
                 <input id="editYear" type="number" name="year" placeholder="" />
+            </div>
+            <div class="ym-fbox">
+                <label for="place">Erscheinungsort:</label>
+                <input id="editPlace" type="text" name="place" />
+            </div>
+            <div class="ym-fbox">
+                <label for="lang">Sprache (2-Buchstaben Code):</label>
+                <input id="editLang" type="text" name="lang" data-validation="length" data-validation-length="max2" />
             </div>
             <div class="ym-fbox">
                 <label for="features">Beilagen (CDs, DVDs, ...):</label>
