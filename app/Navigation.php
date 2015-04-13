@@ -46,6 +46,11 @@ class Navigation {
             "page" => "addLending",
             "caption" => "Bücher ausleihen",
             "requiredPerms" => array("add_lending")
+        ),
+        array(
+            "page" => "endLending",
+            "caption" => "Bücher zurückgeben",
+            "requiredPerms" => array("add_lending")
         )
     );
     

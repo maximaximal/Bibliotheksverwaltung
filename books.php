@@ -2,7 +2,7 @@
 
 require './bootstrap.php';
 
-//header('Content-Type: application/json');
+header('Content-Type: application/json');
 
 if(!isset($_GET["q"])) {
     echo "No search term q set!";

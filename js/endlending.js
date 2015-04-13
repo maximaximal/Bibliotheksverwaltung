@@ -40,7 +40,7 @@ if (lending.loading) return lending.id;
 }
 
 function formatLendingSelection(lending) {
-    return lending.lender + " (ID: " + lending.id + ") - ausgeborgt am " + lending.created;
+    return lending.lender + " (ID: " + lending.id + ") - ausgeborgt am " + lending.created + " für die Klasse " + lending.class + ".";
 }
 
 var germanLanguage = {
@@ -76,29 +76,47 @@ var germanLanguage = {
 };
 
 $(function() {
-    $("#bringback-date").datepicker();
     $.validate({
         language : germanLanguage
     });
 });
 
-var IDs = new Array();
+var lendingID = -1;
 
-function updateFields_lending() {
-    if(IDs.length > 0) {
-        $("#IDsToChange").val(JSON.stringify(IDs));
-    }
+function addBookToAcc(book) {
+    var s = "";
+    
+    s += '<h3>' + book.title + ' (' + book.internalID + ')</h3>' + "\n";
+    s += '<div>';
+    s += '<p>';
+    s += '    Zustand des Buches: ' + book.condition;
+    s += '</p>';
+    s += "</div>\n";
+    
+    $("#accordion").append(s);
 }
 
-$(".bookselector_lending").on("select2:select", function (e) {
-    IDs.push(e.params.data.id);
-
-    updateFields_lending();
-});
-$(".bookselector_lending").on("select2:unselect", function (e) {
-    IDs = $.grep(IDs, function(value) {
-        return value != e.params.data.id;
+function loadLending() {
+    $("#bookCheck").hide();
+    if(("#accordion").destroy) {
+        $("#accordion").destroy();
+    }
+    $("#accordion").html("");
+    
+    $.getJSON("lending.php?id=" + lendingID, function(data) {
+        $.each(data.books, function(i, book) {
+            addBookToAcc(book)
+        });
+        
+        $("#bookCheck").show();
+        $("#accordion").accordion({
+            heightstyle: "content"
+        });
     });
+}
 
-    updateFields_lending();
+$(".lendingselector").on("select2:select", function (e) {
+    lendingID = e.params.data.id;
+    
+    loadLending();
 });
