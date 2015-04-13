@@ -81,7 +81,8 @@ for($i = 0; $i < $count; ++$i)
             "condition" => $condition,
             "place" => $place,
             "lang" => $lang,
-            "internalID" => $internalID
+            "internalID" => $internalID,
+            "lending" => -1
         ));
 
     $book->save();
