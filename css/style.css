@@ -7,3 +7,7 @@
 .ui-accordion .ui-accordion-content {
     padding: 1em 2.2em;
 }
+
+.small {
+    font-size: 0.5em;
+}

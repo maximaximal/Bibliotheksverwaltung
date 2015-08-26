@@ -89,7 +89,7 @@ function addBookToAcc(book) {
     s += '<h3>' + book.title + ' (' + book.internalID + ')</h3>' + "\n";
     s += '<div>';
     s += '<p>';
-    s += '    Zustand des Buches: ' + book.condition;
+    s += '    Zustand des Buches: <input type="text" id="' + book.id'">' + book.condition;
     s += '</p>';
     s += "</div>\n";
     
