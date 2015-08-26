@@ -18,6 +18,9 @@ use App\Config;
 //Start the session.
 session_start();
 
+//Set the default timezone for later use. 
+date_default_timezone_set("Europe/Vienna");
+
 if(!isset($_SESSION['user'])) {
     $_SESSION['user'] = false;
 }
