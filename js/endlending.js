@@ -83,20 +83,26 @@ $(function() {
 
 var lendingID = -1;
 
+var booksArray = null;
+
 function addBookToAcc(book) {
     var s = "";
     
     s += '<h3>' + book.title + ' (' + book.internalID + ')</h3>' + "\n";
-    s += '<div>';
-    s += '<p>';
-    s += '    Zustand des Buches: <input type="text" class="book-condition" id="' + book.id + '">' + book.condition + '</input>';
-    s += '</p>';
+//    Preserved for future debugging possibilities.
+//    s += '<p>ID: <span class="book-id">' + book.id + '</span>'
+    s += '<div class="ym-fbox ym-fbox-text">';
+    s += '    <label for="condition' + book.id + '">Zustand des Buches:</label><input type="text" data-id="' + book.id + '" name="condition' + book.id + '" class="book-condition" id="condition' + book.id + '" value="' + book.condition + '" />';
     s += "</div>\n";
     
     $("#accordion").append(s);
+
+    booksArray.push(book);
 }
 
 function loadLending() {
+    booksArray = new Array();
+
     $("#bookCheck").hide();
     if(("#accordion").destroy) {
         $("#accordion").destroy();
@@ -119,4 +125,19 @@ $(".lendingselector").on("select2:select", function (e) {
     lendingID = e.params.data.id;
     
     loadLending();
+});
+
+$("#submit").click(function(e) {
+    var submitArr = new Array();
+
+    $(".book-condition").each(function(i, book) {
+        var newCond = book.value;
+        var bookID = $(book).data("id");
+
+        submitArr.push({'id': newCond});
+    });
+
+    $.post("endlending.php", submitArr, function(data) {
+        submitArr = null;
+    });
 });
