@@ -9,6 +9,7 @@ function addBookToList(book) {
     c += "    <td>" + book["year"] + "</td>\n";
     c += "    <td>" + book["publisher"] + "</td>\n";
     c += "    <td>" + book["place"] + "</td>\n";
+    c += "    <td>" + book["features"] + "</td>\n";
     c += "    <td>" + book["lang"] + "</td>\n";
     c += "    <td>" + book["condition"] + "</td>\n";
     c += "</tr>\n";
@@ -31,6 +32,7 @@ function listBooks(lendingID) {
         c += "    <th>Jahr</th>\n";
         c += "    <th>Verlag</th>\n";
         c += "    <th>Ort</th>\n";
+        c += "    <th>Beilagen</th>\n";
         c += "    <th>Sprache</th>\n";
         c += "    <th>Zustand</th>\n";
         c += "</tr>\n";
