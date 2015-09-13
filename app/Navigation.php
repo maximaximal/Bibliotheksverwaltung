@@ -43,6 +43,11 @@ class Navigation {
             "requiredPerms" => array("view_lendings")
         ),
         array(
+            "page" => "viewBook",
+            "caption" => "Buch einsehen",
+            "requiredPerms" => array("view_book")
+        ),
+        array(
             "page" => "addLending",
             "caption" => "Bücher ausleihen",
             "requiredPerms" => array("add_lending")

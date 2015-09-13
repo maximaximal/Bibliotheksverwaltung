@@ -1,7 +1,21 @@
 {% extends "master.html.twig" %}
 
-{% block title %}Bücher verwalten{% endblock %}
+{% block title %}Ausleihungen einsehen{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <link href="css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script src="js/viewlendings.js"></script>
+{% endblock %}
 
 {% block content %}
-    <h2>Ausleihungen einsehen</h2>
+    <h2>Einsehen der bestehenden (aktiven) Ausleihungen</h2>
+
+    <div id="existingLendings">
+
+    </div>
 {% endblock %}

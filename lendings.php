@@ -40,7 +40,7 @@ foreach($lendings as $lending)
         "id" => $lending->id,
         "lender" => $lending->lender,
         "class" => $lending->class,
-        "bringback" => $lending->bringback,
+        "bringback" => date("d.m.Y", strtotime($lending->bringback)),
         "books" => $lending->books,
         "issuedBy" => $lending->issuedBy,
         "created" => date("d.m.Y", strtotime($lending->created))
