@@ -37,7 +37,6 @@
                 </select>
             </div>
         </form>
-        
         <div style="display: none;" id="bookCheck">
             <h3>Rückgabe überprüfen</h3>
             <h4>Bücher überprüfen</h4>
@@ -53,6 +52,19 @@
             <br>
 
             <button type="submit" class="save ym-save ym-success ym-button float-right" id="submit">Akzeptieren und Bücher zurücknehmen.</button>
+        </div>
+        <div style="display: none;" id="result_success" class="box success">
+            <p>
+                Die Daten wurden erfolgreich eingespeichert und die Ausleihung wurde wieder zurückgegeben. 
+            </p>
+        </div>
+        <div style="display: none;" id="result_failure" class="box error">
+            <p>
+                Es trat ein Fehler beim Speichern der Daten auf. Bitte teilen sie diesen Fehlercode ihrem Administrator mit:
+            </p>
+            <pre id="result_failure_code">
+                
+            </pre>
         </div>
     </div>
 {% endblock %}

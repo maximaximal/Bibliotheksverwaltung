@@ -11,7 +11,18 @@ if(!isset($_GET["q"])) {
 
 $q = $_GET["q"];
 
+$active = false;
+
+if(isset($_GET["active"])) {
+    $active = true;
+}
+
+
 $rawClause = "(`lender` LIKE ? OR `class` LIKE ? OR `id` LIKE ?)";
+
+if($active) {
+    $rawClause .= " AND (`active` = TRUE)";
+}
 
 $lendings = ORM::for_table("lendings")
     ->where_raw($rawClause, array("%$q%", "%$q%", "%$q%"))

@@ -1,6 +1,6 @@
 $(".lendingselector").select2({
     ajax: {
-        url: "lendings.php",
+        url: "lendings.php?active",
         dataType: 'json',
         data: function (params) {
             return {
@@ -125,19 +125,27 @@ $(".lendingselector").on("select2:select", function (e) {
     lendingID = e.params.data.id;
     
     loadLending();
+    $("#submit").show();
 });
 
 $("#submit").click(function(e) {
-    var submitArr = new Array();
+    $("#submit").hide();
+    var submitArr = {};
 
     $(".book-condition").each(function(i, book) {
-        var newCond = book.value;
+        var newCond = $(book).val();
         var bookID = $(book).data("id");
 
-        submitArr.push({'id': newCond});
+        submitArr[bookID] = newCond;
     });
 
-    $.post("endlending.php", submitArr, function(data) {
+    $.post("endlending.php?id=" + lendingID, "json=" + JSON.stringify(submitArr), function(data) {
         submitArr = null;
+        if(data === "true") {
+            $("#result_success").show();
+        } else {
+            $("#result_failure_code").html(data);
+            $("#result_failure").show();
+        }
     });
 });

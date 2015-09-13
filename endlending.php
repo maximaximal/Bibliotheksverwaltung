@@ -14,48 +14,58 @@ if(!$user->hasPermission("end_lending")) {
     exit();
 }
 
-function checkSet($post) 
-{
-    return isset($_POST[$post]);
-}
-
-if(!checkSet("lender")
-    || !checkSet("class") 
-    || !checkSet("ids")
-    || !checkSet("bringback")) {
+if(!isset($_POST["json"])) {
     echo "Not all variables were set!";
     exit();
 }
 
-$timestamp = strtotime(time());
-$idArray = json_decode($ids);
-if(!count($idArray) > 0) {
-    echo "You have to input more than 0 books!";
+$lendingID = -1;
+$ids = array();
+
+if(isset($_GET["id"])) {
+    $lendingID = $_GET["id"];
+} else {
+    echo "No lending ID was provided!";
     exit();
 }
 
-$lending = ORM::for_table("lendings")
-    ->create(array(
-        "lender" => $lender,
-        "class" => $class,
-        "issuedBy" => $_SESSION['user']->getID(),
-        "books" => $ids,
-        "bringback" => date("Y-m-d H:i:s", $timestamp)
-    ));
+$ids = $_POST["json"];
+$ids = (array) json_decode($ids);
 
+$timestamp = strtotime(time());
+
+$lending = ORM::for_table("lendings")->find_one($lendingID);
+$lending->active = false;
 $lending->save();
 
-$books = ORM::for_table("books")
-    ->where_id_in(json_decode($ids))
-    ->find_result_set();
-    
-if($books) {
-    $books->set("lending", $lending->id());
-    $books->save();
-}
-else {
-    echo "Book IDs not found!";
-    exit();
+$books = null;
+$bookIDs = array();
+
+if(count($ids) > 1) {
+    foreach($ids as $id => $cond) {
+        $ids[intval($id)] = $cond;
+        array_push($bookIDs, intval($id));
+    }
+
+    $books = ORM::for_table("books")
+        ->where_id_in($bookIDs)
+        ->find_result_set();
+
+    if($books) {
+        $books->set("lending", -1);
+
+        foreach($books as $book) {
+            $book->condition = $ids[$book->id()];
+        }
+        $books->save();
+    }
+} else {
+    $bookID = reset($ids);
+
+    $book = ORM::for_table("books")->find_one($bookID);
+    $book->condition = $ids[$bookID];
+    $book->lending = -1;
+    $book->save();
 }
 
-header("Location: index.php?page=addLending&data=success");
+echo "true";

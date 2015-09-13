@@ -50,7 +50,7 @@ class Navigation {
         array(
             "page" => "endLending",
             "caption" => "Bücher zurückgeben",
-            "requiredPerms" => array("add_lending")
+            "requiredPerms" => array("end_lending")
         )
     );
     
