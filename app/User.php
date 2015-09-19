@@ -64,6 +64,14 @@ class User {
             $this->username = $username;
             $this->name = $name;
 
+            //Add rights to view books and add lendings for new users. (Configurable)
+            if(Config::get("NEW_USERS_VIEW_BOOK")) {
+                array_push($this->permissions, "view_book");
+            }
+            if(Config::get("NEW_USERS_VIEW_LENDINGS")) {
+                array_push($this->permissions, "view_lendings");
+            }
+
             return $this->createInDB();
         }   
         return false;

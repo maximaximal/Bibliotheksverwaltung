@@ -44,6 +44,9 @@ Config::set("DB_USER", "test");
 Config::set("DB_PASS", "test");
 Config::set("DB_NAME", "bibliotheksregister");
 
+Config::set("NEW_USERS_VIEW_BOOK", true);
+Config::set("NEW_USERS_VIEW_LENDINGS", true);
+
 //Setup the database.
 ORM::configure('mysql:host='.Config::get("DB_HOST").';dbname='.Config::get("DB_NAME"));
 ORM::configure('username', Config::get("DB_USER"));
