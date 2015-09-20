@@ -80,7 +80,7 @@ class Navigation {
             $add = false;
             
             if(isset($item['requiredPerms'])) {
-                if($_SESSION['user'] != false) {
+                if(is_object($_SESSION['user'])) {
                     $user = $_SESSION['user'];
                     $add = true;
 
